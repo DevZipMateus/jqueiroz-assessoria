@@ -256,7 +256,9 @@
     }
     @media (max-width: 768px) { .hero-aurora { opacity: 0.35; } }
 
-    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+
+    .hero-content { max-width: 700px; }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -370,18 +372,6 @@
 
     .sobre-img-wrap { position: relative; border-radius: 20px; overflow: hidden; }
     .sobre-img-wrap img { width: 100%; height: 480px; object-fit: cover; display: block; }
-    .sobre-img-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(10,25,48,0.90), transparent);
-      padding: 28px; display: flex; align-items: flex-end;
-    }
-    .sobre-badge {
-      background: var(--gold); color: var(--navy-900);
-      padding: 12px 20px; border-radius: 12px; text-align: center;
-    }
-    .sobre-badge strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; line-height: 1; }
-    .sobre-badge span { font-size: 0.78rem; }
-
     .sobre-text .section-subtitle { max-width: none; margin-bottom: 24px; }
 
     .mvv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
@@ -791,8 +781,6 @@
     @keyframes auroraDrift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,30px) scale(1.08); } }
     @keyframes auroraDrift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(25px,-25px) scale(1.1); } }
 
-    .sobre-badge { animation: floatY 3.6s ease-in-out infinite; }
-
     nav a.nav-active { color: var(--gold-light) !important; }
     .mobile-nav a.nav-active { color: var(--navy-800) !important; background: rgba(18,41,74,0.06); }
 
@@ -928,7 +916,6 @@
       .stat-label       { font-size: 0.68rem; max-width: 100px; }
 
       .sobre-img-wrap img  { height: 220px; }
-      .sobre-badge strong  { font-size: 1.6rem; }
       .mvv-card         { padding: 16px; }
       .mvv-card p       { font-size: 0.82rem; }
 
@@ -1033,6 +1020,7 @@
     <div class="hero-aurora hero-aurora-2" aria-hidden="true"></div>
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="container">
+      <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-badge">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5.5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.5-3-7-7-7z"/><circle cx="12" cy="9" r="2"/></svg>
@@ -1070,6 +1058,7 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
   </section>
 
@@ -1102,13 +1091,7 @@
     <div class="container">
       <div class="sobre-grid">
         <div class="sobre-img-wrap">
-          <img src="assets/img/sobre-ceo.jpg" alt="Janice Queiroz, contadora e CEO da J Queiroz Assessoria Contábil, em seu escritório" loading="lazy">
-          <div class="sobre-img-overlay">
-            <div class="sobre-badge">
-              <strong>9+</strong>
-              <span>anos de<br>experiência</span>
-            </div>
-          </div>
+          <img src="assets/img/sobre-ceo.jpg" alt="Janice Queiroz, contadora e CEO da J Queiroz Assessoria Contábil" loading="lazy">
         </div>
         <div class="sobre-text">
           <span class="section-tag">Quem somos</span>
@@ -1117,7 +1100,7 @@
             Com uma trajetória profissional iniciada aos 16 anos, Janice Queiroz construiu uma carreira sólida baseada em conhecimento, dedicação e compromisso com resultados. Contadora e gestora financeira, une expertise técnica a uma visão estratégica voltada para o crescimento sustentável das empresas.
           </p>
           <p class="section-subtitle" style="margin-top:14px;">
-            Sua formação inclui MBA em Gestão Tributária, MBA em Consultoria Financeira, Controladoria, Compliance e Reestruturação de Negócios, além de especialização em Reforma Tributária. Em 2017 iniciou seus primeiros projetos independentes e, desde 2023, está à frente do próprio escritório em <strong>Manaus/AM</strong>, com o propósito de descomplicar a gestão empresarial e transformar a contabilidade em uma ferramenta estratégica para geração de resultados.
+            Sua formação inclui MBA em Gestão Tributária, MBA em Consultoria Financeira, Controladoria, Compliance e Reestruturação de Negócios, além de especialização em Reforma Tributária. Em 2017 iniciou seus primeiros projetos independentes e, desde 2023, está à frente do próprio negócio, com matriz em <strong>Manaus/AM</strong> e atendimento personalizado a empresas de todo o Brasil, com o propósito de descomplicar a gestão empresarial e transformar a contabilidade em uma ferramenta estratégica para geração de resultados.
           </p>
           <div class="mvv-grid">
             <div class="mvv-card">
@@ -1206,8 +1189,8 @@
     <div class="container">
       <div class="section-header center">
         <span class="section-tag">O que fazemos</span>
-        <h2 class="section-title" id="servicos-title">Serviços de <span>assessoria contábil</span></h2>
-        <p class="section-subtitle">Atuamos nos setores contábil, fiscal, pessoal e financeiro, além de consultoria, regularização de empresas, financiamentos e treinamentos — tudo para dar clareza e segurança ao seu negócio.</p>
+        <h2 class="section-title" id="servicos-title">Serviços de <span>Assessoria e Consultoria Contábil</span></h2>
+        <p class="section-subtitle">Atuamos nos setores contábil, fiscal, pessoal e financeiro, além de consultoria, regularização de empresas, financiamentos, treinamentos e revisão e análise tributária — tudo para dar clareza e segurança ao seu negócio.</p>
       </div>
       <div class="servicos-grid">
 
@@ -1255,8 +1238,8 @@
           <div class="servico-icon">
             <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <h3>Regularização e societária</h3>
-          <p>Abertura, alteração e regularização de empresas, com toda a burocracia resolvida junto aos órgãos competentes.</p>
+          <h3>Regularização de Empresa</h3>
+          <p>Abertura, alterações, encerramento de empresas, regularização do CNPJ Inapto junto à Receita Federal e demais serviços para sua empresa estar apta a trabalhar.</p>
         </div>
 
         <div class="servico-card">
@@ -1630,7 +1613,7 @@
                 <option value="contabilidade">Contabilidade geral</option>
                 <option value="financeiro">Terceirização financeira</option>
                 <option value="tributario">Planejamento tributário</option>
-                <option value="societaria">Regularização e societária</option>
+                <option value="societaria">Regularização de Empresa</option>
                 <option value="afeam">Financiamento Afeam</option>
                 <option value="consultoria">Consultoria empresarial</option>
                 <option value="treinamento">Treinamentos e cursos</option>
@@ -1793,7 +1776,7 @@
       if (!nome || !telefone) { alert('Por favor, preencha nome e telefone.'); return; }
       const labels = {
         pessoal:'Departamento pessoal', fiscal:'Departamento fiscal', contabilidade:'Contabilidade geral',
-        financeiro:'Terceirização financeira', tributario:'Planejamento tributário', societaria:'Regularização e societária',
+        financeiro:'Terceirização financeira', tributario:'Planejamento tributário', societaria:'Regularização de Empresa',
         afeam:'Financiamento Afeam', consultoria:'Consultoria empresarial', treinamento:'Treinamentos e cursos', outro:'Outro assunto'
       };
       let msg = `Olá! Vim pelo site e gostaria de um atendimento.\n\n`;
