@@ -102,6 +102,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/img/hero-bg.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/logo-hero.png" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
@@ -155,10 +156,10 @@
     /* ===== HEADER ===== */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(26,35,43,0.97);
+      background: rgba(5,12,26,0.90);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       transition: box-shadow 0.3s;
     }
     header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
@@ -189,12 +190,12 @@
     nav a.nav-active:not(.btn-nav)::after { transform: scaleX(1); }
 
     .btn-nav {
-      background: var(--navy-800); color: var(--white) !important;
+      background: var(--gold); color: var(--navy-900) !important;
       padding: 9px 20px; border-radius: 8px;
       font-weight: 600; font-size: 0.875rem;
       transition: background 0.2s, transform 0.15s !important;
     }
-    .btn-nav:hover { background: var(--navy-700) !important; transform: translateY(-1px); }
+    .btn-nav:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
 
     .menu-toggle {
       display: none; flex-direction: column; gap: 5px;
@@ -219,7 +220,7 @@
     .mobile-nav a:hover { background: var(--gray-100); color: var(--navy-800); }
     .mobile-nav .btn-nav {
       margin-top: 8px; text-align: center;
-      background: var(--navy-800); color: var(--white) !important;
+      background: var(--gold); color: var(--navy-900) !important;
     }
 
     /* ===== HERO ===== */
@@ -233,9 +234,9 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(135deg,
-        rgba(10,25,48,0.94) 0%,
-        rgba(18,41,74,0.88) 45%,
-        rgba(156,123,61,0.42) 100%);
+        rgba(3,7,16,0.98) 0%,
+        rgba(6,14,29,0.97) 50%,
+        rgba(10,23,44,0.95) 100%);
       z-index: 0;
     }
     #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
@@ -246,12 +247,12 @@
     }
     .hero-aurora-1 {
       width: 520px; height: 520px; top: -160px; right: -120px;
-      background: radial-gradient(circle, rgba(201,164,90,0.40), transparent 70%);
+      background: radial-gradient(circle, rgba(24,54,92,0.38), transparent 70%);
       animation: auroraDrift1 16s ease-in-out infinite;
     }
     .hero-aurora-2 {
       width: 420px; height: 420px; bottom: -140px; left: -100px;
-      background: radial-gradient(circle, rgba(36,80,127,0.55), transparent 70%);
+      background: radial-gradient(circle, rgba(12,28,52,0.50), transparent 70%);
       animation: auroraDrift2 20s ease-in-out infinite;
     }
     @media (max-width: 768px) { .hero-aurora { opacity: 0.35; } }
@@ -273,16 +274,34 @@
       font-size: clamp(2.2rem, 4.6vw, 3.5rem);
       font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 14px;
     }
-    .hero h1 span { color: var(--gold-light); }
+    .hero h1 span { display: block; color: var(--gold-light); }
 
     .hero-slogan {
-      font-size: 0.95rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px;
+      display: inline-block;
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.03em;
+      text-transform: uppercase; color: var(--white);
+      background: rgba(59,91,219,0.55); border-radius: 4px;
+      padding: 3px 8px; margin-bottom: 20px;
     }
 
     .hero h2 {
       font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 400;
-      color: rgba(255,255,255,0.82); margin-bottom: 36px; max-width: 560px;
+      color: rgba(255,255,255,0.82); margin-bottom: 18px; max-width: 560px;
+    }
+
+    .hero-lead-secondary {
+      font-size: clamp(0.9rem, 1.7vw, 1rem); font-weight: 400;
+      color: rgba(255,255,255,0.68); margin-bottom: 36px; max-width: 560px;
+    }
+
+    .hero-visual { flex-shrink: 0; }
+    .hero-visual img { display: block; width: 520px; max-width: 100%; height: auto; }
+
+    @media (max-width: 1024px) {
+      .hero-visual img { width: 400px; }
+    }
+    @media (max-width: 900px) {
+      .hero-visual { display: none; }
     }
 
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
@@ -794,12 +813,14 @@
 
     .servico-card, .diff-card { will-change: transform; }
 
-    .hero-badge      { animation: heroFadeLeft 0.75s cubic-bezier(0.22,1,0.36,1) 0.20s both; }
-    .hero-content h1 { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.38s both; }
-    .hero-slogan     { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.50s both; }
-    .hero-content h2 { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.62s both; }
-    .hero-actions    { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.76s both; }
-    .hero-stats      { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.90s both; }
+    .hero-badge         { animation: heroFadeLeft 0.75s cubic-bezier(0.22,1,0.36,1) 0.20s both; }
+    .hero-content h1    { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.38s both; }
+    .hero-slogan        { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.50s both; }
+    .hero-content h2    { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.62s both; }
+    .hero-lead-secondary { animation: heroFadeUp  0.80s cubic-bezier(0.22,1,0.36,1) 0.70s both; }
+    .hero-actions       { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.76s both; }
+    .hero-stats         { animation: heroFadeUp   0.80s cubic-bezier(0.22,1,0.36,1) 0.90s both; }
+    .hero-visual        { animation: heroFadeUp   0.90s cubic-bezier(0.22,1,0.36,1) 0.30s both; }
 
     .section-title span {
       background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
@@ -1024,11 +1045,12 @@
       <div class="hero-content">
         <div class="hero-badge">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5.5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.5-3-7-7-7z"/><circle cx="12" cy="9" r="2"/></svg>
-          Manaus/AM — Assessoria contábil estratégica
+          Manaus/AM — Consultoria empresarial
         </div>
-        <h1>J Queiroz <span>Assessoria Contábil</span></h1>
+        <h1>J Queiroz <span>Consultoria Empresarial</span></h1>
         <p class="hero-slogan">Clareza para decidir. Segurança para crescer.</p>
-        <h2>Sua empresa não precisa apenas de uma contabilidade em dia. Precisa de informações que ajudem você a tomar decisões melhores.</h2>
+        <h2>"Ajudamos empresários a construir empresas mais organizadas, lucrativas e preparadas para crescer, utilizando contabilidade, gestão financeira, planejamento tributário, indicadores e processos como ferramentas para gerar resultados."</h2>
+        <p class="hero-lead-secondary">Mais do que cumprir obrigações, trabalhamos para gerar crescimento, segurança e resultados que contribuam para o sucesso dos nossos clientes.</p>
         <div class="hero-actions">
           <a href="https://wa.me/55" class="btn-primary" aria-label="Fale conosco via WhatsApp" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1046,17 +1068,20 @@
           </div>
           <div class="stat-item">
             <div class="stat-num">3<span>+</span></div>
-            <div class="stat-label">MBAs e especializações</div>
+            <div class="stat-label">Especialistas à disposição</div>
           </div>
           <div class="stat-item">
             <div class="stat-num">10<span>+</span></div>
-            <div class="stat-label">Serviços contábeis e de consultoria</div>
+            <div class="stat-label">Segmentos atendidos</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num"><span></span>AM</div>
-            <div class="stat-label">Atuação no Amazonas</div>
+            <div class="stat-num"><span>AM</span></div>
+            <div class="stat-label">Atendimento em todo o Amazonas</div>
           </div>
         </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/img/logo-hero.png" alt="J Queiroz Consultoria Empresarial — Logo" width="520" height="520" fetchpriority="high">
       </div>
       </div>
     </div>
@@ -1105,11 +1130,11 @@
           <div class="mvv-grid">
             <div class="mvv-card">
               <h4>Missão</h4>
-              <p>Facilitar a gestão empresarial, descomplicando processos, através de conhecimentos e soluções que geram resultados financeiros e contábeis.</p>
+              <p>Facilitar a gestão empresarial, descomplicando processos por meio de conhecimentos, tecnologia e soluções estratégicas que geram resultados financeiros, contábeis e sustentáveis para os negócios.</p>
             </div>
             <div class="mvv-card">
               <h4>Visão</h4>
-              <p>Ser referência que ensina os empresários a administrar seus negócios com clareza.</p>
+              <p>Ser reconhecida nacionalmente por transformar empresários em gestores mais preparados, por meio da educação, da consultoria e da inteligência contábil.</p>
             </div>
           </div>
         </div>
@@ -1293,7 +1318,7 @@
           <div class="plano-icon">
             <svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
           </div>
-          <h3 class="plano-nome">JQ Plano <span>Essencial</span></h3>
+          <h3 class="plano-nome">JQ Jornada <span>Essencial</span></h3>
           <p class="plano-tagline">Para empresas que buscam segurança, organização e tranquilidade para cuidar do que realmente importa: o crescimento do negócio.</p>
           <div class="plano-features">
             <div class="plano-feature"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Escrituração contábil</span></div>
@@ -1308,7 +1333,7 @@
             <strong>Para quem é</strong>
             <span>Empresas que buscam conformidade fiscal e contábil com atendimento próximo.</span>
           </div>
-          <a href="https://wa.me/55?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20JQ%20Plano%20Essencial%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="plano-cta" target="_blank" rel="noopener noreferrer" aria-label="Solicitar informações sobre o JQ Plano Essencial via WhatsApp">
+          <a href="https://wa.me/55?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20JQ%20Jornada%20Essencial%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="plano-cta" target="_blank" rel="noopener noreferrer" aria-label="Solicitar informações sobre o JQ Jornada Essencial via WhatsApp">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" fill="currentColor" stroke="none"/><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0012.05 0z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
             Quero esse plano
           </a>
@@ -1319,7 +1344,7 @@
           <div class="plano-icon">
             <svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
           </div>
-          <h3 class="plano-nome">JQ Plano <span>Gestão</span></h3>
+          <h3 class="plano-nome">JQ Jornada <span>Gestão</span></h3>
           <p class="plano-tagline">Transforme informações em decisões mais inteligentes.</p>
           <span class="plano-incluso-tag">Tudo do Essencial +</span>
           <div class="plano-features">
@@ -1335,7 +1360,7 @@
             <strong>Para quem é</strong>
             <span>Empresárias que querem entender melhor os números antes de tomar decisões.</span>
           </div>
-          <a href="https://wa.me/55?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20JQ%20Plano%20Gest%C3%A3o%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="plano-cta" target="_blank" rel="noopener noreferrer" aria-label="Solicitar informações sobre o JQ Plano Gestão via WhatsApp">
+          <a href="https://wa.me/55?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20JQ%20Jornada%20Gest%C3%A3o%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="plano-cta" target="_blank" rel="noopener noreferrer" aria-label="Solicitar informações sobre o JQ Jornada Gestão via WhatsApp">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" fill="currentColor" stroke="none"/><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0012.05 0z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
             Quero esse plano
           </a>
@@ -1345,7 +1370,7 @@
           <div class="plano-icon">
             <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
           </div>
-          <h3 class="plano-nome">JQ Plano <span>Estratégico</span></h3>
+          <h3 class="plano-nome">JQ Jornada <span>Estratégica</span></h3>
           <p class="plano-tagline">Acompanhamento estratégico para empresas que desejam crescer com planejamento e segurança.</p>
           <span class="plano-incluso-tag">Tudo do Gestão +</span>
           <div class="plano-features">
@@ -1362,7 +1387,7 @@
             <strong>Para quem é</strong>
             <span>Empresas em fase de expansão que desejam uma contabilidade consultiva e apoio estratégico.</span>
           </div>
-          <a href="https://wa.me/55?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20JQ%20Plano%20Estrat%C3%A9gico%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="plano-cta" target="_blank" rel="noopener noreferrer" aria-label="Solicitar informações sobre o JQ Plano Estratégico via WhatsApp">
+          <a href="https://wa.me/55?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20JQ%20Jornada%20Estrat%C3%A9gica%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="plano-cta" target="_blank" rel="noopener noreferrer" aria-label="Solicitar informações sobre o JQ Jornada Estratégica via WhatsApp">
             <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" fill="currentColor" stroke="none"/><path d="M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0012.05 0z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
             Quero esse plano
           </a>
